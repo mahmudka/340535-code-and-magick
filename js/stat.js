@@ -19,7 +19,7 @@ var setColor = function (ctx, names) {
   } else {
     ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
   }
-}
+};
 
 window.renderStatistics = function (ctx, names, times) {
 
