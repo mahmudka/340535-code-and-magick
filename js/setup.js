@@ -46,17 +46,29 @@
   similarListElement.appendChild(fragment);
 
   userDialog.querySelector('.setup-similar').classList.remove('hidden');
+  // Разкраска Героев
+  // wizardCoat.addEventListener('click', function () {
+  //   wizardCoat.style.fill = WIZARD_COATCOLORS[window.getRandomValues(0, 3)];
+  // });
+  //
+  // wizardEyes.addEventListener('click', function () {
+  //   wizardEyes.style.fill = WIZARD_EYESCOLORS[window.getRandomValues(0, 3)];
+  // });
+  //
+  // wizardFireBall.addEventListener('click', function () {
+  //   wizardFireBall.style.backgroundColor = WIZARD_FIRECOLORS[window.getRandomValues(0, 3)];
+  // });
 
-  wizardCoat.addEventListener('click', function () {
-    wizardCoat.style.fill = WIZARD_COATCOLORS[window.getRandomValues(0, 3)];
-  });
+  function changeColor(element, color) {
+    element.style.fill = window.getRandomValues(color);
+  }
 
-  wizardEyes.addEventListener('click', function () {
-    wizardEyes.style.fill = WIZARD_EYESCOLORS[window.getRandomValues(0, 3)];
-  });
+  function changeBackground(element, color) {
+    element.style.backgroundColor = window.getRandomValues(color);
+  }
 
-  wizardFireBall.addEventListener('click', function () {
-    wizardFireBall.style.backgroundColor = WIZARD_FIRECOLORS[window.getRandomValues(0, 3)];
-  });
+  window.colorize(wizardCoat, WIZARD_COATCOLORS, changeColor);
+  window.colorize(wizardEyes, WIZARD_EYESCOLORS, changeColor);
+  window.colorize(wizardFireBall, WIZARD_FIRECOLORS, changeBackground);
 
 })();
