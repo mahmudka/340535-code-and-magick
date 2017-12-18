@@ -15,6 +15,7 @@
   var wizardCoat = document.querySelector('.setup-wizard .wizard-coat');
   var wizardEyes = document.querySelector('.setup-wizard .wizard-eyes');
   var wizardFireBall = document.querySelector('.setup-fireball-wrap');
+  var loadPath = 'https://1510.dump.academy/code-and-magick';
 
 
   var wizards = [];
@@ -38,14 +39,33 @@
     return wizardElement;
   };
 
-  var fragment = document.createDocumentFragment();
-  for (i = 0; i < wizards.length; i++) {
-    fragment.appendChild(renderWizard(wizards[i]));
-
+  window.renderFragment = function () {
+    var fragment = document.createDocumentFragment();
+    for (i = 0; i < wizards.length; i++) {
+      fragment.appendChild(renderWizard(wizards[i]));
+      similarListElement.appendChild(fragment);
+    }
   }
-  similarListElement.appendChild(fragment);
 
   userDialog.querySelector('.setup-similar').classList.remove('hidden');
+
+  function successHandler(magics) {
+    window.render4(magics);
+  }
+
+  function errorHandler(errorMessage) {
+    var nodeElement = document.createElement('div');
+    nodeElement.style = 'z-index: 1000; margin: 0 auto; text-align: center; background-color: red;';
+    nodeElement.style.position = 'absolute';
+    nodeElement.style.left = 0;
+    nodeElement.style.right = 0;
+    nodeElement.style.fontSize = '40px';
+
+    nodeElement.textContent = errorMessage;
+    document.body.insertAdjacentElement('afterbegin', nodeElement);
+  }
+
+  window.backend.load(loadPath, successHandler, errorHandler);
   // Разкраска Героев
   // wizardCoat.addEventListener('click', function () {
   //   wizardCoat.style.fill = WIZARD_COATCOLORS[window.getRandomValues(0, 3)];
@@ -72,3 +92,4 @@
   window.colorize(wizardFireBall, WIZARD_FIRECOLORS, changeBackground);
 
 })();
+
